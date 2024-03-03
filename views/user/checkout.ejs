@@ -1,0 +1,175 @@
+<%- include("navbar.ejs")%>
+
+
+<!-- Start Hero Section -->
+<div class="hero">
+    <div class="container">
+        <div class="row justify-content-between">
+            <div class="col-lg-5">
+                <div class="intro-excerpt">
+                    <h1>Checkout</h1>
+                </div>
+            </div>
+            <div class="col-lg-7">
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Hero Section -->
+
+<div class="untree_co-section">
+    <form action="/place_order" method="post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 mb-5 mb-md-0">
+                <h2 class="h3 mb-3 text-black">Billing Details</h2>
+                <div class="p-3 p-lg-5 border bg-white">
+                    <div class="form-group">
+                        <label for="c_country" class="text-black">Country <span class="text-danger">*</span></label>
+                        <select id="c_country" class="form-control" name="c_country" required>
+                            <option value="" disabled selected>Select a country</option>
+                            <option value="India">India</option>
+                            <option value="bangladesh">bangladesh</option>
+                        </select>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            <label for="c_fname" class="text-black">First Name <span
+                                    class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="c_fname" name="c_fname" placeholder="First Name...">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="c_lname" class="text-black">Last Name <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="c_lname" name="c_lname" placeholder="Last Name...">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <label for="c_address" class="text-black">Address <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="c_address" name="c_address" 
+                                placeholder="Street address">
+                        </div>
+                    </div>
+
+                    <div class="form-group mt-3">
+                        <input type="text" class="form-control" name="c_area" placeholder="Apartment, suite, unit etc. (optional)">
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            <label for="c_state" class="text-black">State <span
+                                    class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="c_state" name="c_state" placeholder="State Enter Here..." required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="c_postal_zip" class="text-black">Postal / Zip Code <span
+                                    class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="c_postal_zip" name="c_postal_zip" placeholder="Pin Code Enter Here..">
+                        </div>
+                    </div>
+
+                    <div class="form-group row mb-5">
+                        <div class="col-md-6">
+                            <label for="c_email" class="text-black">Email Address <span
+                                    class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="c_email" name="c_email" placeholder="Email " required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="c_phone" class="text-black">Phone <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="c_phone" name="c_phone"
+                                placeholder="Phone Number" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="row mb-5">
+                    <div class="col-md-12">
+                        <h2 class="h3 mb-3 text-black">Your Order</h2>
+                        <div class="p-3 p-lg-5 border bg-white">
+                            <table class="table site-block-order-table mb-5">
+                                <thead>
+                                    <th>Product</th>
+                                    <th>Total</th>
+                                </thead>
+                                <tbody>
+                                    <% 
+                                    var subtotal = 0;
+                                    for(var i=0; i<cart_products.length;i++){
+                                        subtotal += (cart_products[i].product_price * cart_products[i].qty)
+                                        %>    
+                                        <tr>
+                                            <td><%=cart_products[i].product_name%> <strong class="mx-2">x</strong> <%=cart_products[i].qty%></td>
+                                            <td>&#8377; <%=cart_products[i].product_price * cart_products[i].qty%></td>
+                                        </tr>
+                                    <%}%>
+                                   
+                                    <%
+                                        var discount = Number(subtotal * 0.2).toFixed();
+
+                                        var gst = Math.ceil(((subtotal - discount) * 0.12));
+
+                                        var total = Math.ceil((subtotal - discount + Number(gst)));
+                                    %>
+                                    <tr>
+                                        <td class="text-black font-weight-bold"><strong>Cart Subtotal</strong></td>
+                                        <td class="text-black">&#8377; <%=subtotal%></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="text-black font-weight-bold"><strong>GST (12%): </strong></td>
+                                        <td class="text-black">
+                                           &#8377; <%=gst%>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-black font-weight-bold"><strong>Discount (20%): </strong></td>
+                                        <td class="text-black">
+                                          &#8377;  <%=discount%>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-black font-weight-bold"><strong>Order Total</strong></td>
+                                        <td class="text-black font-weight-bold"><strong>&#8377; <%=total%> /-</strong></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <div class="border p-3 mb-3">
+                                <h3 class="h6 mb-0">
+                                    <label class="d-block justify-content-center align-items-center " data-bs-toggle="collapse" href="#collapsebank"role="button">
+                                        <input type="radio" name="payment_mode"  value="cod" style="height: 17px; width: 17px; padding-top: 5px;" >
+                                         <span class="p-1"> Cash On Delivery (COD)</span>
+                                    </label>
+                                </h3>
+                            </div>
+
+                            <div class="border p-3 mb-3">
+                                <h3 class="h6 mb-0">
+                                    <label class="d-block" data-bs-toggle="collapse" href="#collapsecheque"
+                                        role="button" aria-expanded="false" aria-controls="collapsecheque">
+                                        <input type="radio" name="payment_mode" value="online" style="height: 17px; width: 17px; padding-top: 5px;" checked>
+                                        <span class="p-1"> Online Payment (Cards, UPI, Net Banking etc...) </span>
+                                    </label>
+                                </h3>
+                            </div>
+
+                            <div class="form-group">
+                                <button class="btn btn-black btn-lg py-3 btn-block">Place Order</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    </form>
+</div>
+
+
+<%- include("footer.ejs")%>

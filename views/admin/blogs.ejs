@@ -1,0 +1,44 @@
+<%- include("navbar.ejs") %>
+
+    <form action="/admin/save_blogs" method="post" enctype="multipart/form-data">
+        <div class="container-fluid p-4 bg-white">
+            <div class="row">
+                <div class="mb-3 col-md-12">
+                    <h3>Add New Blog</h3>
+                </div>
+                <div class="mb-3 col-md-4">
+                    Blog Title : 
+                    <input type="text" name="blog_title" class="form-control" id="">
+                </div>
+                <div class="mb-3 col-md-4">
+                    Blog Post Date : 
+                    <input type="date" name="blog_date" class="form-control" id="">
+                </div>
+                <div class="mb-3 col-md-4">
+                    Blog Post Time : 
+                    <input type="time" name="blog_time" class="form-control" id="">
+                </div>
+                <div class="mb-3 col-md-4">
+                    Blog Image : 
+                    <input type="file" multiple name="blog_image" class="form-control" id="" required>
+                </div>
+                <div class="mb-3 col-md-4">
+                    Blog Post By : 
+                    <input type="text" name="blogPostBy" id="" class="form-control">
+                </div>
+                <div class="mb-3 col-md-4">
+                    Blog Post By Position : 
+                    <input type="text" name="blogPostByPosition" class="form-control" id="">
+                </div>
+                <div class="mb-3 col-md-12">
+                    Blog Details : 
+                    <textarea name="blog_details" id="" class="form-control"></textarea>
+                </div>
+                <div class="col-md-12 text-center">
+                    <button class="btn btn-primary">Save Blog</button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <%- include("footer.ejs") %>

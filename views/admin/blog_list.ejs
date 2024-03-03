@@ -1,0 +1,64 @@
+<%- include("navbar.ejs") %>
+
+
+    <div class="container-fluid bg-white p-4">
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Blogs List</h3>
+            </div>
+            <div class="col-md-12">
+                <table class="table table-bordered table-striped table-sm">
+                    <tr>
+                        <th>Action</th>
+                        <th>Sr.NO.</th>
+                        <th>Blog Title</th>
+                        <th>Blog Date</th>
+                        <th>Blog Time</th>
+                        <th>Blog Post By</th>
+                        <th>Blog Post By Position</th>
+                        <th>Blog Image</th>
+                        <th>Blog Details</th>
+                    </tr>
+                    <% for(var i=0; i<blogs.length;i++){ %>
+                        <tr>
+                            <td>
+                                <a href="/admin/edit_blog/<%=blogs[i].blog_id%>"><button
+                                        class="btn btn-success"><i class="fa fa-edit" style="font-size:24px"></i></button></a>
+                                <a href="/admin/delete_blog/<%=blogs[i].blog_id%>"><button
+                                        class="btn btn-danger"><i class="fa fa-trash-o" style="font-size:24px"></i></button></a>
+                            </td>
+                            <td>
+                                <%= i+1 %>
+                            </td>
+                            <td>
+                                <%=blogs[i].blog_title%>
+                            </td>
+                            <td>
+                                <%=blogs[i].blog_date%>
+                            </td>
+                            <td>
+                                <%=blogs[i].blog_time%>
+                            </td>
+                            <td>
+                                <%=blogs[i].blogPostBy%>
+                            </td>
+                            <td>
+                                <%=blogs[i].blogPostByPosition%>
+                            </td>
+                            <td>
+                                <img src="/uploads/<%=blogs[i].blog_image%>" width="150px" height="150px" alt="">
+                            </td>
+                            <td>
+                                <%=blogs[i].blog_details%>
+                            </td>
+                        </tr>
+                        <%}%>
+
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+
+    <%- include("footer.ejs") %>

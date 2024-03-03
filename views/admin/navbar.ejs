@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <base href="./">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta name="description" content="CoreUI - Open Source Bootstrap Admin Template">
+    <meta name="author" content="Łukasz Holeczek">
+    <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,jQuery,CSS,HTML,RWD,Dashboard">
+    <title>Admin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="apple-touch-icon" sizes="57x57" href="/admin/assets/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/admin/assets/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/admin/assets/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/admin/assets/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/admin/assets/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/admin/assets/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/admin/assets/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/admin/assets/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/admin/assets/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/admin/assets/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/admin/assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/admin/assets/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/admin/assets/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/admin/assets/favicon/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/admin/assets/favicon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <!-- Vendors styles-->
+    <link rel="stylesheet" href="/admin/vendors/simplebar/css/simplebar.css">
+    <link rel="stylesheet" href="/admin/css/vendors/simplebar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Main styles for this application-->
+    <link href="/admin/css/style.css" rel="stylesheet">
+    <!-- We use those styles to show code examples, you should remove them in your application.-->
+    <link href="/admin/css/examples.css" rel="stylesheet">
+    <link href="/admin/vendors/@coreui/chartjs/css/coreui-chartjs.css" rel="stylesheet">
+    
+</head>
+
+<body>
+    <div class="sidebar sidebar-dark sidebar-fixed" id="sidebar">
+        <div class="sidebar-brand d-none d-md-flex">
+            <svg class="sidebar-brand-full" width="118" height="46" alt="CoreUI Logo">
+                <use xlink:href="/admin/assets/brand/coreui.svg#full"></use>
+            </svg>
+            <svg class="sidebar-brand-narrow" width="46" height="46" alt="CoreUI Logo">
+                <use xlink:href="/admin/assets/brand/coreui.svg#signet"></use>
+            </svg>
+        </div>
+        <ul class="sidebar-nav" data-coreui="navigation" data-simplebar="">
+            <li class="nav-item">
+                <a class="nav-link" href="/admin">
+                    <svg class="nav-icon">
+                        <use xlink:href="/admin/vendors/@coreui/icons/svg/free.svg#cil-cursor"></use>
+                    </svg> Dashboard
+                </a>
+            </li>
+            <li class="nav-group">
+                <a class="nav-link nav-group-toggle" href="#">
+            
+                    <svg class="nav-icon">
+            
+                        <use xlink:href="/admin/vendors/@coreui/icons/svg/free.svg#cil-cursor"></use>
+                    </svg> Orders
+                </a>
+                <ul class="nav-group-items">
+                    <li class="nav-item"><a class="nav-link" href="/admin/pending_order">
+                            <span class="nav-icon"></span>
+                            Pending Orders</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="/admin/dispatch_order">
+                            <span class="nav-icon"></span>Dispatch Orders
+                        </a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="/admin/shipping_order">
+                            <span class="nav-icon"></span> Shipping Orders
+                        </a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="/admin/delivered_order">
+                            <span class="nav-icon"></span> Delivered Orders
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/manage_banner">
+                    <svg class="nav-icon">
+                        <use xlink:href="/admin/vendors/@coreui/icons/svg/free.svg#cil-cursor"></use>
+                    </svg> Banner
+                </a>
+            </li>
+            
+            <li class="nav-group">
+                <a class="nav-link nav-group-toggle" href="#">
+                    <svg class="nav-icon">
+                        <use xlink:href="/admin/vendors/@coreui/icons/svg/free.svg#cil-cursor"></use>
+                    </svg> Products
+                </a>
+                <ul class="nav-group-items">
+                    <li class="nav-item"><a class="nav-link" href="/admin/product_type"><span class="nav-icon"></span>
+                            Products Type</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/admin/product"><span
+                                class="nav-icon"></span>Add New Product </a></li>
+                    <li class="nav-item"><a class="nav-link" href="/admin/product_list"><span
+                                class="nav-icon"></span> Product List</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-group">
+                <a class="nav-link nav-group-toggle" href="#">
+                    <svg class="nav-icon">
+                        <use xlink:href="/admin/vendors/@coreui/icons/svg/free.svg#cil-cursor"></use>
+                    </svg> Why Choose Us
+                </a>
+                <ul class="nav-group-items">
+                    <li class="nav-item"><a class="nav-link" href="/admin/why_choose_us_heading"><span class="nav-icon"></span>
+                            Heading</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/admin/why_choose_us_points"><span class="nav-icon"></span> Why Choose Us Points </a></li>
+                </ul>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/modern_interior">
+                    <svg class="nav-icon">
+                        <use xlink:href="/admin/vendors/@coreui/icons/svg/free.svg#cil-cursor"></use>
+                    </svg> Modern Interior
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/testimonial">
+                    <svg class="nav-icon">
+                        <use xlink:href="/admin/vendors/@coreui/icons/svg/free.svg#cil-cursor"></use>
+                    </svg> Testimonial
+                </a>
+            </li>
+
+            <li class="nav-group">
+                <a class="nav-link nav-group-toggle" href="#">
+                    <svg class="nav-icon">
+                        <use xlink:href="/admin/vendors/@coreui/icons/svg/free.svg#cil-cursor"></use>
+                    </svg> Blog
+                </a>
+                <ul class="nav-group-items">
+                    <li class="nav-item"><a class="nav-link" href="/admin/blogs"><span class="nav-icon"></span>Add Blog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/admin/blog_list"><span class="nav-icon"></span> Blogs List </a></li>
+                </ul>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/addTeam">
+                    <svg class="nav-icon">
+                        <use xlink:href="/admin/vendors/@coreui/icons/svg/free.svg#cil-cursor"></use>
+                    </svg> Our Team
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/contactus">
+                    <svg class="nav-icon">
+                        <use xlink:href="/admin/vendors/@coreui/icons/svg/free.svg#cil-cursor"></use>
+                    </svg> ContactUs Customer
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/newsletter">
+                    <svg class="nav-icon">
+                        <use xlink:href="/admin/vendors/@coreui/icons/svg/free.svg#cil-cursor"></use>
+                    </svg> Customer NewsLetter
+                </a>
+            </li>
+            
+
+
+
+            
+        </ul>
+        <button class="sidebar-toggler" type="button" data-coreui-toggle="unfoldable"></button>
+    </div>
+    <div class="wrapper d-flex flex-column min-vh-100 bg-light">
+        <header class="header header-sticky mb-4">
+            <div class="container-fluid">
+                <button class="header-toggler px-md-0 me-md-3" type="button"
+                    onclick="coreui.Sidebar.getInstance(document.querySelector('#sidebar')).toggle()">
+                    <svg class="icon icon-lg">
+                        <use xlink:href="/admin/vendors/@coreui/icons/svg/free.svg#cil-menu"></use>
+                    </svg>
+                </button><a class="header-brand d-md-none" href="#">
+                    <svg width="118" height="46" alt="CoreUI Logo">
+                        <use xlink:href="/admin/assets/brand/coreui.svg#full"></use>
+                    </svg></a>
+                
+                <ul class="header-nav ms-3">
+                    <li class="nav-item dropdown"><a class="nav-link py-0" data-coreui-toggle="dropdown" href="#"
+                            role="button" aria-haspopup="true" aria-expanded="false">
+                            <div class="avatar avatar-md"><img class="avatar-img" src="/admin/assets/img/avatars/8.jpg"
+                                    alt="user@email.com"></div>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end pt-0">
+                            <a class="dropdown-item" href="#">
+                                <svg class="icon me-2">
+                                    <use xlink:href="/admin/vendors/@coreui/icons/svg/free.svg#cil-user"></use>
+                                </svg> Profile
+                            </a>
+                            <a class="dropdown-item" href="/admin/admin_logout">
+                                <svg class="icon me-2">
+                                    <use xlink:href="/admin/vendors/@coreui/icons/svg/free.svg#cil-account-logout"></use>
+                                </svg> Logout
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </header>
+        <div class="body flex-grow-1 px-3">

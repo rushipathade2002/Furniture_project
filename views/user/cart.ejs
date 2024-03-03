@@ -1,0 +1,187 @@
+<%- include("navbar.ejs") %> 
+
+        
+    <div class="untree_co-section before-footer-section">
+        <div class="container">
+            <div class="row mb-5">
+                <form class="col-md-12" method="post">
+                    <div class="site-blocks-table">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="product-thumbnail">Image</th>
+                                    <th class="product-name">Product</th>
+                                    <th class="product-price">Price</th>
+                                    <th class="product-quantity">Quantity</th>
+                                    <th class="product-total">Total</th>
+                                    <th class="product-remove">Remove</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <%if(products.length <= 0){%>
+                                    <tr>
+                                        <td colspan="6">
+                                            <br><br>
+                                            <h3>No Product Available In Your Cart !!!</h3>
+                                            <br><br><br>
+                                        </td>
+                                    </tr>
+
+                                <%}%>
+                                <% 
+                                var sub_total = 0;
+                                for(var i=0; i<products.length; i++){
+                                    sub_total = sub_total + (products[i].product_price * products[i].qty );
+                                    var imgs = products[i].product_image.split("~");
+                                    var img = "";
+                                    for (var j =0; j<imgs.length;j++){
+                                        if(imgs[j] != ''){
+                                            img = imgs[j];
+                                            break;
+                                        }
+                                    }
+                                    %>
+                                    %>   
+                                <tr>
+                                    <td class="product-thumbnail">
+                                        <img src="/uploads/<%=img%>" alt="Image" class="img-fluid">
+                                    </td>
+                                    <td class="product-name">
+                                        <h2 class="h5 text-black"><%=products[i].product_name%></h2>
+                                    </td>
+                                    <td>&#8377; <%=products[i].product_price%></td>
+                                    <td>
+                                        <div class="input-group mb-3 d-flex align-items-center quantity-container"
+                                            style="max-width: 120px;">
+                                            <div class="input-group-prepend">
+                                                <button class="btn btn-outline-black "
+                                                    type="button" onclick="decreaseQty('<%=products[i].cart_id%>')">&minus;</button>
+                                            </div>
+                                            <input type="text" class="form-control text-center quantity-amount" id="user_cart_qty<%=products[i].cart_id%>" value="<%=products[i].qty%>"
+                                                placeholder="" aria-label="Example text with button addon"
+                                                aria-describedby="button-addon1">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-outline-black " onclick="increaseQty('<%=products[i].cart_id%>')" type="button">&plus;</button>
+                                            </div>
+                                        </div>
+    
+                                    </td>
+                                    <td>&#8377; <span class="all_product_total" id="user_cart_total<%=products[i].cart_id%>"> 
+                                            <%=products[i].product_price * products[i].qty%> 
+                                        </span>
+                                    </td>
+                                    <td><a href="/delete_from_cart/<%=products[i].cart_id%>" class="btn btn-black btn-sm"><i class="fa fa-remove" style="font-size:24px"></i></a></td>
+                                </tr>
+
+                                <%}%>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </form>
+            </div>
+    
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="row mb-5">
+                        <div class="col-md-6">
+                            <a href="/shop">
+                                <button class="btn btn-outline-black btn-sm btn-block">Continue Shopping</button>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- <div class="row">
+                        <div class="col-md-12">
+                            <label class="text-black h4" for="coupon">Coupon</label>
+                            <p>Enter your coupon code if you have one.</p>
+                        </div>
+                        <div class="col-md-8 mb-3 mb-md-0">
+                            <input type="text" class="form-control py-3" id="coupon" placeholder="Coupon Code">
+                        </div>
+                        <div class="col-md-4">
+                            <button class="btn btn-black">Apply Coupon</button>
+                        </div>
+                    </div> -->
+                </div>
+                <div class="col-md-6 pl-5">
+                    <div class="row justify-content-end">
+                        <div class="col-md-7">
+                            <div class="row">
+                                <div class="col-md-12 text-right border-bottom mb-5">
+                                    <h3 class="text-black h4 text-uppercase">Cart Totals</h3>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <span class="text-black">Total : </span>
+                                </div>
+                                <div class="col-md-6 text-right">
+                                    <strong class="text-black">
+                                        &#8377; <span id="sub_total"> <%=sub_total%> </span>
+                                    </strong>
+                                </div>
+                            </div>
+                            <!-- <div class="row mb-5">
+                                <div class="col-md-6">
+                                    <span class="text-black">Total</span>
+                                </div>
+                                <div class="col-md-6 text-right">
+                                    <strong class="text-black">&#8377; 230.00</strong>
+                                </div>
+                            </div> -->
+    
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <a href="/checkout">
+                                        <button class="btn btn-black btn-lg py-3 btn-block">Proceed To Checkout</button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function decreaseQty(user_cart_id){
+            var inp_id = "user_cart_qty"+user_cart_id;
+            var total_id = "user_cart_total"+user_cart_id;
+
+            $.ajax({
+                "url":"/decrease_qty/"+ user_cart_id
+            }).done(function(result)
+            {
+                // console.log(result);
+                document.getElementById(inp_id).value = result.new_qty;
+                document.getElementById(total_id).innerHTML = result.total;
+                grand_total();
+            });
+        }
+
+        function increaseQty(user_cart_id) {
+                var inp_id = "user_cart_qty" + user_cart_id;
+                var total_id = "user_cart_total" + user_cart_id;
+
+                $.ajax({
+                    "url": "/increase_qty/" + user_cart_id,
+                }).done(function (result){
+                    document.getElementById(inp_id).value = result.new_qty;
+                    document.getElementById(total_id).innerHTML = result.total;
+                    grand_total();
+                });
+            }
+
+            function grand_total(){
+                var all_totals = document.getElementsByClassName("all_product_total");
+                var sum = 0;
+                for(var i=0; i<all_totals.length;i++){
+                    sum = sum + Number(all_totals[i].innerHTML);
+                }
+                $('#sub_total').html(sum);
+            }
+    </script>
+
+    <%- include("footer.ejs") %>

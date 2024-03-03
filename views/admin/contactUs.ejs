@@ -1,0 +1,55 @@
+<%- include("navbar.ejs")%>
+
+<div class="container-fluid bg-white ps-5 pe-5">
+    <div class="row text-center">
+        <div class="col-md-12 p-3">
+            <h2>Customer Contacts</h2>
+        </div>
+        <table class="table table-bordered table-responsive table-hover">
+            <thead>
+                <th>Action</th>
+                <th>SrNo.</th>
+                <th>Name </th>
+                <th>Email </th>
+                <th>Message</th>
+            </thead>
+
+            <% if(contactus.length==0) { %>
+                <tr>
+                    <th colspan="5">
+                        <br><br><br>
+                        <h4>No Contacts Found!!!</h4>
+                        <br><br>
+                    </th>
+                </tr>
+                <%}%>
+            
+            <% for(let i=0; i<contactus.length; i++){%>
+                <tr>
+                    <td><a href="/admin/deleteContactUs/<%=contactus[i].c_id%>">
+                            <button class="btn btn-danger">
+                                <i class="fa fa-trash-o" style="font-size:24px"></i>
+                            </button>
+                        </a>
+                    </td>
+                    <td>
+                        <%=i+1%>
+                    </td>
+                    <td>
+                        <%=contactus[i].fname +' '+ contactus[i].lname %>
+                    </td>
+                    <td>
+                        <%=contactus[i].email%>
+                    </td>
+                    <td>
+                        <%=contactus[i].message%>
+                    </td>
+                </tr>
+                    
+                
+            <%}%>
+        </table>
+    </div>
+</div>
+
+<%- include("footer.ejs")%>

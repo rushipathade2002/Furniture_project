@@ -1,0 +1,51 @@
+<%- include("navbar.ejs") %>
+
+    <form action="/admin/update_blog" method="post" enctype="multipart/form-data">
+        <div class="container-fluid p-4 bg-white">
+            <div class="row">
+                <div class="mb-3 col-md-12">
+                    <h3>Edit Blog</h3>
+                </div>
+                <% for(let i=0; i<blogs.length; i++){%>
+                    <div class="mb-3 col-md-6">
+                        <input type="hidden" name="blog_id" value="<%=blogs[i].blog_id%>" >
+                        Blog Title :
+                        <input type="text" name="blog_title" value="<%=blogs[i].blog_title%>" class="form-control" >
+                    </div>
+                    <div class="mb-3 col-md-3">
+                        Blog Post Date :
+                        <input type="date" name="blog_date" value="<%=blogs[i].blog_date%>"
+                            class="form-control">
+                    </div>
+                    <div class="mb-3 col-md-3">
+                        Blog Post Time :
+                        <input type="time" name="blog_time" class="form-control" value="<%=blogs[i].blog_time%>" >
+                    </div>
+                    <div class="mb-3 col-md-6">
+                        Blog Post By :
+                        <input type="text" name="blogPostBy" class="form-control" value="<%=blogs[i].blogPostBy%>" >
+                    </div>
+                    <div class="mb-3 col-md-6">
+                        Blog Post By Position:
+                        <input type="text" name="blogPostByPosition" value="<%=blogs[i].blogPostByPosition%>" class="form-control" >
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        Blog Image :
+                        <input type="file" name="blog_image" class="form-control" >
+                    </div>
+                    <div class="col-md-2 mb-2">
+                        <img src="/uploads/<%=blogs[i].blog_image%>" height="200px" width="100%" alt="">
+                    </div>
+                    <div class="mb-3 col-md-6">
+                        Blog Details :
+                        <textarea name="blog_details"  class="form-control"><%=blogs[i].blog_details%></textarea>
+                    </div>
+                    <%}%>
+                        <div class="col-md-12 text-center">
+                            <button class="btn btn-primary">Update Testimonial</button>
+                        </div>
+            </div>
+        </div>
+    </form>
+
+    <%- include("footer.ejs") %>

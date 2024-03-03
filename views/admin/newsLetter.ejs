@@ -1,0 +1,52 @@
+<%- include("navbar.ejs")%>
+
+    <div class="container-fluid bg-white pe-5 pb-3 ps-5">
+        <div class="row text-center ">
+            <div class="col-md-12 p-4 text-start">
+                <h2>NewsLetter Feeds</h2>
+            </div>
+            <table class="table table-bordered table-responsive table-hover">
+                <thead>
+                    <th>Action</th>
+                    <th>SrNo.</th>
+                    <th>Name </th>
+                    <th>Email </th>
+                </thead>
+
+                <% if(newsletter.length == 0) { %> 
+                    <tr>
+                        <th colspan="4">
+                            <br><br>
+                            <h3>No Records Found</h3>
+                            <br><br>
+                        </th>
+                    </tr>    
+                <%}%>
+
+                <% for(let i=0; i<newsletter.length; i++) 
+                { %>
+                    <tr>
+                        <td><a href="/admin/deleteNewsLetter/<%=newsletter[i].news_id%>">
+                                <button class="btn btn-danger">
+                                    <i class="fa fa-trash-o" style="font-size:24px"></i>
+                                </button>
+                            </a>
+                        </td>
+                        <td>
+                            <%=i+1%>
+                        </td>
+                        <td>
+                            <%=newsletter[i].name%>
+                        </td>
+                        <td>
+                            <%=newsletter[i].email%>
+                        </td>
+                </tr>
+                    
+                
+            <%}%>
+        </table>
+    </div>
+</div>
+
+<%- include("footer.ejs")%>

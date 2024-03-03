@@ -1,0 +1,63 @@
+<%- include("navbar.ejs") %>
+
+<form action="/admin/update_modern_interior" method="post" enctype="multipart/form-data">
+<div class="container-fluid bg-white p-4">
+    <div class="row">
+        <div class="col-md-12 mb-2 text-center">
+            <h3>Modern Interior</h3>
+            <input type="hidden" name="id" value="<%=modern_data[0].id%>" id="">
+        </div>
+        <div class="col-md-6 mb-3">
+            Heading : 
+            <input type="text" name="heading" value="<%=modern_data[0].heading%>" class="form-control" id="">
+        </div>
+        <div class="col-md-6 mb-3">
+            Details :
+            <input type="text" name="details" value="<%=modern_data[0].details%>" class="form-control" id="">
+        </div>
+        <div class="col-md-6 mb-3">
+            Key Point 1 :
+            <input type="text" name="key_point1" value="<%=modern_data[0].key_point1%>" class="form-control" id="">
+        </div>
+        <div class="col-md-6 mb-3">
+            Key Point 2 :
+            <input type="text" name="key_point2" value="<%=modern_data[0].key_point2%>" class="form-control" id="">
+        </div>
+        <div class="col-md-6 mb-3">
+            Key Point 3 :
+            <input type="text" name="key_point3" value="<%=modern_data[0].key_point3%>" class="form-control" id="">
+        </div>
+        <div class="col-md-6 mb-3">
+            Key Point 4 :
+            <input type="text" name="key_point4" value="<%=modern_data[0].key_point4%>" class="form-control" id="">
+        </div>
+        <div class="col-md-4 mb-3">
+            Image :
+            <input type="file" name="image1"  class="form-control" id="">
+        </div>
+        <div class="col-md-4 mb-3">
+            Image :
+            <input type="file" name="image2" class="form-control" id="">
+        </div>
+        <div class="col-md-4 mb-3">
+            Image :
+            <input type="file" name="image3" class="form-control" id="">
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <img src="/uploads/<%=modern_data[0].image1%>" width="100%" height="250px" alt="">
+        </div>
+        <div class="col-md-4 mb-3">
+            <img src="/uploads/<%=modern_data[0].image2%>" width="100%" height="250px" alt="">
+        </div>
+        <div class="col-md-4 mb-3">
+            <img src="/uploads/<%=modern_data[0].image3%>" width="100%" height="250px" alt="">
+        </div>
+
+        <div class="col-md-12 text-center"><button class="btn btn-primary">Update Form</button> </div>
+        
+    </div>
+</div>
+</form>
+
+<%- include("footer.ejs") %>

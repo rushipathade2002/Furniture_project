@@ -1,0 +1,83 @@
+<%- include("navbar.ejs")%>
+
+    <form action="/admin/save_why_choose_us_points" method="post" enctype="multipart/form-data">
+        <div class="container p-3 bg-white">
+            <div class="row justify-content-center">
+                <div class="col-md-12 text-center mb-4">
+                    <h3>Manage Why Choose us Points </h3>
+                </div>
+                <div class="col-md-6 mb-3">
+                    Name :
+                    <input type="text" name="wcup_name" value="" class="form-control">
+                </div>
+                <div class="col-md-6 mb-3">
+                    Image :
+                    <input type="file" name="wcup_image" class="form-control" id="">
+                </div>
+                <div class="col-md-12 mb-3">
+                    Details :
+                    <textarea name="wcup_details" class="form-control" rows="2"></textarea>
+                </div>
+                <div class="col-md-12 mb-3 text-center">
+                    <button class="btn btn-primary">Save </button>
+                </div>
+            </div>
+        </div>
+    </form>
+<br><br>
+<!-- Why choose up end -->
+
+
+<!-- why choose up point start -->
+<div class="container-fluid bg-white">
+    <div class="row justify-content-center text-center">
+        <div class="col-md-8 ">
+            <h3>All Points </h3>
+        </div>
+        <div class="col-md-12">
+            <table class="table table-hover table-responsive ">
+                <tr>
+                    <th>Action</th>
+                    <th>SrNo.</th>
+                    <th>Name</th>
+                    <th>Details</th>
+                    <th>Image</th>
+                </tr>
+                <tr>
+                    <% if(points.length <=0 ){ %>
+                        <td colspan="3" rowspan="3">No Record Available!!!</td>
+                        <% } %>
+                </tr>
+                <% for(i=0; i<points.length; i++){ %>
+                    <tr>
+                        <td>
+                            <a href="/admin/edit_point/<%=points[i].wcup_id%>"><button
+                                    class="btn btn-success"><i class="fa fa-edit" style="font-size:24px"></i></button></a>
+                            <a href="/admin/delete_point/<%=points[i].wcup_id%>"><button
+                                    class="btn btn-danger"><i class="fa fa-trash-o" style="font-size:24px"></i></button></a>
+                        </td>
+                        <td> 
+                            <%=i+1%>
+                        </td>
+                        <td>
+                            <%=points[i].wcup_name%>
+                        </td>
+                        <td>
+                            <%=points[i].wcup_details%>
+                        </td>
+                        <td>
+                            <img src="/uploads/<%=points[i].wcup_image%>" width="100%" alt="">
+                        </td>
+                    </tr>
+                    <%}%>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- why choose us point end -->
+
+
+
+
+    <%- include("footer.ejs")%>
+

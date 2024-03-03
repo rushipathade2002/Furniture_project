@@ -1,0 +1,38 @@
+<%- include("navbar.ejs") %>
+
+    <form action="/admin/update_team" method="post" enctype="multipart/form-data">
+        <div class="container-fluid bg-white p-3 text-center">
+            <div class="row">
+                <div class="col-md-12  mb-2">
+                    <h3>Add Owner </h3>
+                </div>
+                <div class="col-md-4 mb-2 text-start">
+                    <input type="hidden" name="owner_id" value="<%=owner[0].owner_id%>" id="">
+                    Name :
+                    <input type="text" name="team_name" value="<%=owner[0].team_name%>" class="form-control" id="">
+                </div>
+                <div class="col-md-4 mb-2 text-start">
+                    Enter Position :
+                    <input type="text" name="team_position" value="<%=owner[0].team_position%>" class="form-control" id="">
+                </div>
+                <div class="col-md-4 text-start mb-4">
+                    Profile Link :
+                    <input type="text" name="profile_link" value="<%=owner[0].profile_link%>" class="form-control">
+                </div>
+                
+                <div class="col-md-5 mb-2 text-start">
+                    Owner Details :
+                    <textarea name="owner_details" class="form-control" cols="30" rows="2"><%=owner[0].owner_details%></textarea>
+                </div>
+                <div class="col-md-4 text-start mb-1">
+                    Image :
+                    <input type="file" name="owner_image" value="" class="form-control" id="">
+                </div>
+                <div class="col-md-3">
+                    <img src="/uploads/<%=owner[0].team_image%>" width="100%"  alt="">
+                </div>
+                
+            </div>
+            <button class="btn btn-primary mb-3">Update Data </button>
+        </div>
+    </form>

@@ -1,0 +1,61 @@
+<%- include("navbar.ejs") %>
+
+
+<div class="container-fluid bg-white p-4">
+    <div class="row">
+        <div class="col-md-12">
+            <h3>All Products List</h3>
+            <form action="/admin/product_search" method="get" class="float-end">
+                <input type="text" name="str" class="form-control w-75 d-inline-block" id="">
+                <button class="btn btn-success"><i class="fa fa-search pt-1"></i></button>
+            </form>
+        </div>
+        <div class="col-md-12">
+            <table class="table table-bordered table-striped table-sm">
+                <tr>
+                    <th>Action</th>
+                    <th>Sr No.</th>
+                    <th>Product Type</th>
+                    <th>Product Name</th>
+                    <th>Product Price</th>
+                    <th>Product Size</th>
+                    <th>Product Color</th>
+                </tr>
+                <% for(var i=0; i<products.length;i++){
+                    %>
+                    <tr>
+                        <td>
+                            <a href="/admin/edit_product/<%=products[i].product_id%>">
+                                <button class="btn btn-success"><i class="fa fa-edit" style="font-size:24px"></i></button>
+                            </a>
+                            <a href="/admin/delete_product/<%=products[i].product_id%>">
+                                <button class="btn btn-danger"><i class="fa fa-trash-o" style="font-size:24px"></i></button>
+                            </a>
+                        </td>
+                        <td><%=i+1%></td>
+                        <td>
+                            <%=products[i].product_type_name%>
+                        </td>
+                        <td>
+                            <%=products[i].product_name%>
+                        </td>
+                        <td>
+                            &#8377 <%=products[i].product_price%>
+                        </td>
+                        <td>
+                            <%=products[i].product_size%>
+                        </td>
+                        <td>
+                            <div style="height: 50px; width: 100%; background-color:<%=products[i].product_color%>"></div>
+                        </td>
+                    </tr>
+                <%}%>
+
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+<%- include("footer.ejs") %>

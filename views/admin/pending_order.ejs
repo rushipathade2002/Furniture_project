@@ -1,0 +1,42 @@
+<%- include("navbar.ejs")%>
+
+<div class="container-fluid p-3 bg-white">
+    <div class="row">
+        <div class="col-md-12">
+            <h3>Pending Order</h3>
+        </div>
+        <table class="table table-bordered table-active table-responsive table-sm">
+            <tr>
+                <th>Action</th>
+                <th>SN</th>
+                <th>Customer Name </th>
+                <th>Contact No </th>
+                <th>Customer Address</th>
+                <th>Total Amount</th>
+                <th>Status</th>
+            </tr>
+            <% orders.map(function(val,i){%>
+                <tr>
+                    <td>
+                        <a href="/admin/view_order/<%=val.order_id%>">
+                            <button class="btn btn-primary">View Order</button>
+                        </a>
+                    </td>
+                    <td><%=i+1%></td>
+                    <td><%=val.c_fname +' '+ val.c_lname%></td>
+                    <td><%= val.c_phone%></td>
+                    <td style="text-transform: capitalize;"><%= val.c_address%></td>
+                    <td>
+                        &#8377; <%= val.total_amt%>
+                    </td>
+                    <td style="text-transform: capitalize; color: white;" class="btn m-2 bg-warning">
+                        <%= val.order_status%>
+                    </td>
+
+                </tr>
+            <%})%>
+        </table>
+    </div>
+</div>
+
+<%- include("footer.ejs")%>

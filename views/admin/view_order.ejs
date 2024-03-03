@@ -1,0 +1,187 @@
+<%- include("navbar.ejs") %>
+
+
+<div class="container">
+    <div class="card">
+        <div class="card-header justify-content-center align-items-center">
+            <div class="col-md-11">
+                Invoice Date :
+                <strong>
+                    <%=order_info[0].order_date%>
+                </strong>
+                <span class="float-end" style="text-transform: capitalize;"> <strong>Status : </strong>
+                    <%=order_info[0].order_status%>
+                </span>
+            </div>
+
+
+        </div>
+        <div class="card-body">
+            <div class="row mb-4">
+                <div class="col-sm-6">
+                    <h6 class="mb-3">From:</h6>
+                    <div>
+                        <strong class="fs-4">Rushikesh Pathade</strong>
+                    </div>
+                    <div>Midsangavi Pathardi</div>
+                    <div>Ahmednagar Maharadhtra, India</div>
+                    <div>Email: rushi@pathade.com</div>
+                    <div>Phone: +91 8459214468</div>
+                </div>
+
+                <div class="col-sm-6">
+                    <h6 class="mb-3">To:</h6>
+                    <div>
+                        <strong><%=order_info[0].c_fname%> <%=order_info[0].c_lname%></strong>
+                    </div>
+                    <div>
+                        <%=order_info[0].c_area%>
+                           
+                    </div>
+                    <div>
+                        <%=order_info[0].c_address%>
+                    </div>
+                    <div>
+                        <%=order_info[0].c_state%> <%=order_info[0].c_postal_zip%>
+                    </div>
+                    <div>Email : <%=order_info[0].c_email%>
+                    </div>
+                    <div>Phone : +91-<%=order_info[0].c_phone%>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="table-responsive-sm">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th class="center">#</th>
+                            <th>Product Name </th>
+                            <th>Product Details </th>
+
+                            <th class="right">Product Price</th>
+                            <th class="center">Qty</th>
+                            <th>Order Status </th>
+                            <th class="right">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <% 
+                            var subtotal = 0;
+                            for(var i=0; i<products.length; i++){
+
+                            var subtotal =  subtotal + (products[i].product_price * products[i].product_qty);
+
+                            var discount = Number(subtotal * 0.2).toFixed(2);
+
+                            var gst = Number((subtotal - discount) * 0.12).toFixed(2);
+
+                            var total = (subtotal - discount + Number(gst)).toFixed(2);
+
+
+                            %>
+                        
+
+                            <tr>
+                                <td class="center">
+                                    <%= i+1 %>
+                                </td>
+                                <td class="left strong">
+                                    <%=products[i].product_name%>
+                                </td>
+                                <td class="left">
+                                    <%=products[i].product_details%>
+                                </td>
+
+                                <td class="right">&#8377; <%=products[i].product_price%>
+                                </td>
+                                <td class="center">
+                                    <%=products[i].product_qty%>
+                                </td>
+                                <td><%order_info[i].payment_status%></td>
+                                <td class="right">&#8377; <%= products[i].product_price * products[i].product_qty %>
+                                </td>
+                            </tr>
+
+                            <%}%>
+                            
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">
+                <div class="col-lg-9 col-sm-5 p-5">
+                    <div class="row p-3">
+                    <%if((order_info[0].order_status) == 'pending'){%>
+                    <div class="col-md-3">
+                        <a href="/admin/dispatch_order/<%=order_info[0].order_id%>">
+                            <button class="btn btn-primary">Transfer To Dispatch</button>
+                        </a>
+                    </div>
+                    <%}else if((order_info[0].order_status) == 'dispatch'){%>
+                    <div class="col-md-3">
+                        <a href="/admin/shipping_order/<%=order_info[0].order_id%>">
+                            <button class="btn btn-primary">Transfer To Shipped</button>
+                        </a>
+                    </div>
+                    <%}else if((order_info[0].order_status) == 'shipped'){%>
+                    <div class="col-md-3">
+                        <a href="/admin/delivered_order/<%=order_info[0].order_id%>">
+                            <button class="btn btn-primary">Transfer To Delivered</button>
+                        </a>
+                    </div>
+                    <%}%>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-5 ml-auto">
+                    <table class="table table-clear">
+                        <tbody>
+                            <tr>
+                                <td class="left">
+                                    <strong>Subtotal : </strong>
+                                </td>
+                                <td class="right">&#8377; <%=subtotal %>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="left">
+                                    <strong>Discount (20%) :  &nbsp; </strong>
+                                </td>
+                                <td class="right">- &#8377; <%=discount %>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="left">
+                                    <strong>GST (12%) : </strong>
+                                </td>
+                                <td class="right">+ &#8377; <%=gst %>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="left">
+                                    <strong>Total : =</strong>
+                                </td>
+                                <td class="right">
+                                    <strong>&#8377; <%=total %></strong>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</div>
+<!-- End Hero Section -->
+
+<br><br><br><br>
+
+
+<%- include("footer.ejs") %>

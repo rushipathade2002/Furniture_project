@@ -1,0 +1,38 @@
+<%- include("navbar.ejs") %>
+
+    <form action="/admin/update_testimonial" method="post" enctype="multipart/form-data">
+        <div class="container-fluid p-4 bg-white">
+            <div class="row">
+                <div class="mb-3 col-md-12">
+                    <h3>Testimonial</h3>
+                </div>
+                <% for(let i=0; i<testimonials.length; i++){%> 
+                <div class="mb-3 col-md-6">
+                    <input type="hidden" name="c_id" value="<%=testimonials[i].c_id%>" id="">
+                    Customer Name &#9824
+                    <input type="text" name="c_name" value="<%=testimonials[i].c_name%>" class="form-control" id="">
+                </div>
+                <div class="mb-3 col-md-6">
+                    Customer Position :
+                    <input type="text" name="c_position" value="<%=testimonials[i].c_position%>" class="form-control" id="">
+                </div>
+                <div class="mb-3 col-md-4">
+                    Customer Image :
+                    <input type="file" name="c_image" class="form-control" id="">
+                </div>
+                <div class="col-md-2 mb-2" >
+                    <img src="/uploads/<%=testimonials[i].c_image%>" height="200px" width="100%" alt="">
+                </div>
+                <div class="mb-3 col-md-6">
+                    Customer Message &#9824
+                    <textarea name="c_message" id="" class="form-control"><%=testimonials[i].c_message%></textarea>
+                </div>
+                <%}%>
+                <div class="col-md-12 text-center">
+                    <button class="btn btn-primary">Update Testimonial</button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <%- include("footer.ejs") %>
